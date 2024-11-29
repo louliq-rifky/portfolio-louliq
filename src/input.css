@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navbar-fixed{
+    @apply fixed z-[9999] bg-begron bg-opacity-60;
+    backdrop-filter: blur(5px);
+    box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.hamburger-line {
+    @apply w-[30px] h-[2px] my-2 block bg-dark; 
+}
+
+.hamburger-active > span:nth-child(1) {
+    @apply  rotate-45;
+}
+.hamburger-active > span:nth-child(2) {
+    @apply scale-0;
+}
+.hamburger-active > span:nth-child(3) {
+    @apply -rotate-45;
+}
+
+/* animasi gambar */
+.image-container {
+    position: relative;
+}
+
+.animated-image {
+    width: 100%;
+    position: relative; /* Pastikan gambar berada di posisi absolut */
+    top: 0; /* Atur posisi gambar di atas */
+    left: 50%;
+    transform: translateX(-50%); /* Pindahkan gambar ke tengah */
+    animation: scaleAnimation 4s infinite; /* Total durasi animasi */
+    z-index: 1; /* Pastikan gambar berada di atas SVG */
+}
+
+@keyframes scaleAnimation {
+    0%, 100% {
+        transform: translateX(-50%) scale(1); /* Ukuran normal */
+    }
+    50% {
+        transform: translateX(-50%) scale(1.1); /* Memperbesar gambar */
+    }
+}
+
+ /* animasi svg */
+ .svg-background {
+    position: absolute; /* Pastikan SVG memiliki posisi absolut */
+    bottom: 0; /* Atur posisi di bawah */
+    left: 50%; /* Atur posisi di tengah */
+    transform: translateX(-50%); /* Pindahkan ke kiri setengah dari lebar */
+    z-index: 0; /* Pastikan SVG berada di belakang gambar */
+    animation: svgScaleAnimation 4s ease-in-out infinite; /* Durasi animasi SVG */
+    transform-origin: center; /* Titik asal transformasi */
+}
+
+@keyframes svgScaleAnimation {
+    0% {
+        transform: translateX(-50%) scale(1); /* Jaga posisi tetap */
+    }
+    50% {
+        transform: translateX(-50%) scale(1.1); /* Scale ke 1.1 */
+    }
+    100% {
+        transform: translateX(-50%) scale(1); /* Kembali ke posisi semula */
+    }
+}
+
+#typewriter {
+    border-right: 2px solid; /* Garis kursor */
+    white-space: nowrap; /* Tidak membungkus teks */
+    overflow: hidden; /* hidden teks yang belum ditampilkan */
+    width: 0; 
+    animation: typing 4s steps(20) forwards, blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: rgb(0, 0, 0); }
+}
+/* CSS line navbar hover*/
+nav a {
+    position: relative;
+    text-decoration: none;
+    color: #000;
+}
+
+nav a:hover {
+    color:#014f51; /* Ganti dengan warna yang diinginkan saat hover */
+}
+
+nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background-color: #014f51; /* Ganti dengan warna garis bawah yang diinginkan */
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+nav a:hover::after {
+    transform: scaleX(1);
+}
+
+@media (max-width: 640px) {
+    .mobile-item {
+        flex-direction: row; /* Mengatur arah flex menjadi baris */
+    }
+
+    .mobile-item .bg-primary {
+        margin-right: 1rem; /* Jarak antara lingkaran dan konten */
+    }
+
+    .mobile-item .bg-primary {
+        display: flex; /* Menampilkan lingkaran */
+        align-items: center; /* Memusatkan ikon di dalam lingkaran */
+        justify-content: center; /* Memusatkan ikon di dalam lingkaran */
+        width: 40px; /* Lebar lingkaran */
+        height: 40px; /* Tinggi lingkaran */
+        border-radius: 50%; /* Membuat lingkaran */
+        background-color: #014f51; /* Warna hijau */
+    }
+}
+
+.section {
+    opacity: 0; /* Mulai dengan tidak terlihat */
+    transform: translateY(20px); /* Geser sedikit ke bawah */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Transisi untuk efek */
+}
+
+.section.visible {
+    opacity: 1; /* Menjadi terlihat */
+    transform: translateY(0); /* Kembali ke posisi normal */
+}
+
+@media (forced-colors: active) {
+    /* Gaya Anda untuk mode warna paksa */
+}
